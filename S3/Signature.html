@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Class: S3::Signature</title>
+
+	<link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
+
+	<script src="../js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="class">
+
+	<div id="metadata">
+		<div id="home-metadata">
+			<div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="../index.html">Home</a>
+          <a href="../index.html#classes">Classes</a>
+          <a href="../index.html#methods">Methods</a>
+        </h3>
+			</div>
+		</div>
+
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="../lib/s3/signature_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="lib/s3/signature.rb">lib/s3/signature.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+			<div id="parent-class-section" class="section">
+				<h3 class="section-header">Parent</h3>
+				
+				<p class="link"><a href="Object.html">S3::Object</a></p>
+				
+			</div>
+			
+
+			<!-- Namespace Contents -->
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#method-c-canonicalized_amz_headers">::canonicalized_amz_headers</a></li>
+					
+					<li><a href="#method-c-canonicalized_resource">::canonicalized_resource</a></li>
+					
+					<li><a href="#method-c-canonicalized_signature">::canonicalized_signature</a></li>
+					
+					<li><a href="#method-c-generate">::generate</a></li>
+					
+					<li><a href="#method-c-generate_temporary_url">::generate_temporary_url</a></li>
+					
+					<li><a href="#method-c-generate_temporary_url_signature">::generate_temporary_url_signature</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="../README_rdoc.html">README.rdoc</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="../images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="../S3.html">S3</a></li>
+				
+					<li><a href="../S3/Bucket.html">S3::Bucket</a></li>
+				
+					<li><a href="../S3/BucketsExtension.html">S3::BucketsExtension</a></li>
+				
+					<li><a href="../S3/Connection.html">S3::Connection</a></li>
+				
+					<li><a href="../S3/Error/ResponseError.html">S3::Error::ResponseError</a></li>
+				
+					<li><a href="../S3/Object.html">S3::Object</a></li>
+				
+					<li><a href="../S3/ObjectsExtension.html">S3::ObjectsExtension</a></li>
+				
+					<li><a href="../S3/Parser.html">S3::Parser</a></li>
+				
+					<li><a href="../S3/Request.html">S3::Request</a></li>
+				
+					<li><a href="../S3/Service.html">S3::Service</a></li>
+				
+					<li><a href="../S3/Signature.html">S3::Signature</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="class">S3::Signature</h1>
+
+		<div id="description">
+			<p>
+Class responsible for generating signatures to requests.
+</p>
+<p>
+Implements algorithm defined by Amazon Web Services to sign request with
+secret private credentials
+</p>
+<h3>See</h3>
+<p>
+<a
+href="http://docs.amazonwebservices.com/AmazonS3/latest/index.html?RESTAuthentication.html">docs.amazonwebservices.com/AmazonS3/latest/index.html?RESTAuthentication.html</a>
+</p>
+
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+
+		<!-- Methods -->
+		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="generate-method" class="method-detail ">
+				<a name="method-c-generate"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">generate</span><span
+						class="method-args">(options)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Generates signature for given parameters
+</p>
+<h4>Options</h4>
+<ul>
+<li><p>
+<tt>:host</tt> - Hostname
+</p>
+</li>
+<li><p>
+<tt>:request</tt> - Net::HTTPRequest object with correct headers
+</p>
+</li>
+<li><p>
+<tt>:access_key_id</tt> - Access key id
+</p>
+</li>
+<li><p>
+<tt>:secret_access_key</tt> - Secret access key
+</p>
+</li>
+</ul>
+<h4>Returns</h4>
+<p>
+Generated signature string for given hostname and request
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="generate-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/s3/signature.rb, line 24</span>
+24:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">generate</span>(<span class="ruby-identifier">options</span>)
+25:       <span class="ruby-identifier">request</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:request</span>]
+26:       <span class="ruby-identifier">access_key_id</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:access_key_id</span>]
+27: 
+28:       <span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge!</span>(<span class="ruby-value">:headers</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">request</span>,
+29:                      <span class="ruby-value">:method</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">method</span>,
+30:                      <span class="ruby-value">:resource</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">path</span>)
+31: 
+32:       <span class="ruby-identifier">signature</span> = <span class="ruby-identifier">canonicalized_signature</span>(<span class="ruby-identifier">options</span>)
+33: 
+34:       <span class="ruby-node">&quot;AWS #{access_key_id}:#{signature}&quot;</span>
+35:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="generate-temporary-url-method" class="method-detail ">
+				<a name="method-c-generate_temporary_url"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">generate_temporary_url</span><span
+						class="method-args">(options)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Generates temporary URL for given resource
+</p>
+<h4>Options</h4>
+<ul>
+<li><p>
+<tt>:bucket</tt> - <a href="Bucket.html">Bucket</a> in which the resource
+resides
+</p>
+</li>
+<li><p>
+<tt>:resource</tt> - Path to the resouce you want to create a temporary
+link to
+</p>
+</li>
+<li><p>
+<tt>:access_key</tt> - Access key
+</p>
+</li>
+<li><p>
+<tt>:secret_access_key</tt> - Secret access key
+</p>
+</li>
+<li><p>
+<tt>:expires_at</tt> - Unix time stamp of when the resouce link will expire
+</p>
+</li>
+<li><p>
+<tt>:method</tt> - HTTP request method you want to use on the resource,
+defaults to GET
+</p>
+</li>
+<li><p>
+<tt>:headers</tt> - Any additional HTTP headers you intend to use when
+requesting the resource
+</p>
+</li>
+</ul>
+					
+
+					
+					<div class="method-source-code"
+						id="generate-temporary-url-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/s3/signature.rb, line 81</span>
+81:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">generate_temporary_url</span>(<span class="ruby-identifier">options</span>)
+82:       <span class="ruby-identifier">bucket</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:bucket</span>]
+83:       <span class="ruby-identifier">resource</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:resource</span>]
+84:       <span class="ruby-identifier">access_key</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:access_key</span>]
+85:       <span class="ruby-identifier">expires</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:expires_at</span>].<span class="ruby-identifier">to_i</span>
+86:       <span class="ruby-identifier">signature</span> = <span class="ruby-identifier">generate_temporary_url_signature</span>(<span class="ruby-identifier">options</span>)
+87: 
+88:       <span class="ruby-identifier">url</span> = <span class="ruby-node">&quot;http://#{S3::HOST}/#{bucket}/#{resource}&quot;</span>
+89:       <span class="ruby-identifier">url</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;?AWSAccessKeyId=#{access_key}&quot;</span>
+90:       <span class="ruby-identifier">url</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&amp;Expires=#{expires}&quot;</span>
+91:       <span class="ruby-identifier">url</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&amp;Signature=#{signature}&quot;</span>
+92:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="generate-temporary-url-signature-method" class="method-detail ">
+				<a name="method-c-generate_temporary_url_signature"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">generate_temporary_url_signature</span><span
+						class="method-args">(options)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Generates temporary URL signature for given resource
+</p>
+<h4>Options</h4>
+<ul>
+<li><p>
+<tt>:bucket</tt> - <a href="Bucket.html">Bucket</a> in which the resource
+resides
+</p>
+</li>
+<li><p>
+<tt>:resource</tt> - Path to the resouce you want to create a temporary
+link to
+</p>
+</li>
+<li><p>
+<tt>:secret_access_key</tt> - Secret access key
+</p>
+</li>
+<li><p>
+<tt>:expires_at</tt> - Unix time stamp of when the resouce link will expire
+</p>
+</li>
+<li><p>
+<tt>:method</tt> - HTTP request method you want to use on the resource,
+defaults to GET
+</p>
+</li>
+<li><p>
+<tt>:headers</tt> - Any additional HTTP headers you intend to use when
+requesting the resource
+</p>
+</li>
+</ul>
+					
+
+					
+					<div class="method-source-code"
+						id="generate-temporary-url-signature-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/s3/signature.rb, line 50</span>
+50:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">generate_temporary_url_signature</span>(<span class="ruby-identifier">options</span>)
+51:       <span class="ruby-identifier">bucket</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:bucket</span>]
+52:       <span class="ruby-identifier">resource</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:resource</span>]
+53:       <span class="ruby-identifier">secret_access_key</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:secret_access_key</span>]
+54:       <span class="ruby-identifier">expires</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:expires_at</span>]
+55: 
+56:       <span class="ruby-identifier">headers</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:headers</span>] <span class="ruby-operator">||</span> {}
+57:       <span class="ruby-identifier">headers</span>.<span class="ruby-identifier">merge!</span>(<span class="ruby-value str">'date'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">expires</span>.<span class="ruby-identifier">to_i</span>.<span class="ruby-identifier">to_s</span>)
+58: 
+59:       <span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge!</span>(<span class="ruby-value">:resource</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;/#{bucket}/#{resource}&quot;</span>,
+60:                      <span class="ruby-value">:method</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:method</span>] <span class="ruby-operator">||</span> <span class="ruby-value">:get</span>,
+61:                      <span class="ruby-value">:headers</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">headers</span>)
+62:       <span class="ruby-identifier">signature</span> = <span class="ruby-identifier">canonicalized_signature</span>(<span class="ruby-identifier">options</span>)
+63: 
+64:       <span class="ruby-constant">CGI</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-identifier">signature</span>)
+65:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="private-class-method-details" class="method-section section">
+			<h3 class="section-header">Private Class Methods</h3>
+
+		
+			<div id="canonicalized-amz-headers-method" class="method-detail ">
+				<a name="method-c-canonicalized_amz_headers"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">canonicalized_amz_headers</span><span
+						class="method-args">(request)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Helper method for extracting header fields from Net::HTTPRequest and
+preparing them for singing in # method
+</p>
+<h4>Parameters</h4>
+<ul>
+<li><p>
+<tt>request</tt> - Net::HTTPRequest object with header fields filled in
+</p>
+</li>
+</ul>
+<h4>Returns</h4>
+<p>
+String containing interesting header fields in suitable order and form
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="canonicalized-amz-headers-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/s3/signature.rb, line 138</span>
+138:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">canonicalized_amz_headers</span>(<span class="ruby-identifier">request</span>)
+139:       <span class="ruby-identifier">headers</span> = []
+140: 
+141:       <span class="ruby-comment cmt"># 1. Convert each HTTP header name to lower-case. For example,</span>
+142:       <span class="ruby-comment cmt"># 'X-Amz-Date' becomes 'x-amz-date'.</span>
+143:       <span class="ruby-identifier">request</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-identifier">headers</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">key</span>.<span class="ruby-identifier">downcase</span>, <span class="ruby-identifier">value</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">key</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\Ax-amz-/</span><span class="ruby-identifier">o</span> }
+144:       <span class="ruby-comment cmt">#=&gt; [[&quot;c&quot;, 0], [&quot;a&quot;, 1], [&quot;a&quot;, 2], [&quot;b&quot;, 3]]</span>
+145: 
+146:       <span class="ruby-comment cmt"># 2. Sort the collection of headers lexicographically by header</span>
+147:       <span class="ruby-comment cmt"># name.</span>
+148:       <span class="ruby-identifier">headers</span>.<span class="ruby-identifier">sort!</span>
+149:       <span class="ruby-comment cmt">#=&gt; [[&quot;a&quot;, 1], [&quot;a&quot;, 2], [&quot;b&quot;, 3], [&quot;c&quot;, 0]]</span>
+150: 
+151:       <span class="ruby-comment cmt"># 3. Combine header fields with the same name into one</span>
+152:       <span class="ruby-comment cmt"># &quot;header-name:comma-separated-value-list&quot; pair as prescribed by</span>
+153:       <span class="ruby-comment cmt"># RFC 2616, section 4.2, without any white-space between</span>
+154:       <span class="ruby-comment cmt"># values. For example, the two metadata headers</span>
+155:       <span class="ruby-comment cmt"># 'x-amz-meta-username: fred' and 'x-amz-meta-username: barney'</span>
+156:       <span class="ruby-comment cmt"># would be combined into the single header 'x-amz-meta-username:</span>
+157:       <span class="ruby-comment cmt"># fred,barney'.</span>
+158:       <span class="ruby-identifier">combined_headers</span> = <span class="ruby-identifier">headers</span>.<span class="ruby-identifier">inject</span>([]) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">new_headers</span>, <span class="ruby-identifier">header</span><span class="ruby-operator">|</span>
+159:         <span class="ruby-identifier">existing_header</span> = <span class="ruby-identifier">new_headers</span>.<span class="ruby-identifier">find</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">h</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>.<span class="ruby-identifier">first</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">header</span>.<span class="ruby-identifier">first</span> }
+160:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">existing_header</span>
+161:           <span class="ruby-identifier">existing_header</span>.<span class="ruby-identifier">last</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;,#{header.last}&quot;</span>
+162:         <span class="ruby-keyword kw">else</span>
+163:           <span class="ruby-identifier">new_headers</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">header</span>
+164:         <span class="ruby-keyword kw">end</span>
+165:       <span class="ruby-keyword kw">end</span>
+166:       <span class="ruby-comment cmt">#=&gt; [[&quot;a&quot;, &quot;1,2&quot;], [&quot;b&quot;, &quot;3&quot;], [&quot;c&quot;, &quot;0&quot;]]</span>
+167: 
+168:       <span class="ruby-comment cmt"># 4. &quot;Un-fold&quot; long headers that span multiple lines (as allowed</span>
+169:       <span class="ruby-comment cmt"># by RFC 2616, section 4.2) by replacing the folding white-space</span>
+170:       <span class="ruby-comment cmt"># (including new-line) by a single space.</span>
+171:       <span class="ruby-identifier">unfolded_headers</span> = <span class="ruby-identifier">combined_headers</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">header</span><span class="ruby-operator">|</span>
+172:         <span class="ruby-identifier">key</span> = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">first</span>
+173:         <span class="ruby-identifier">value</span> = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">last</span>
+174:         <span class="ruby-identifier">value</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/\s+/</span>, <span class="ruby-value str">&quot; &quot;</span>)
+175:         [<span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span>]
+176:       <span class="ruby-keyword kw">end</span>
+177: 
+178:       <span class="ruby-comment cmt"># 5. Trim any white-space around the colon in the header. For</span>
+179:       <span class="ruby-comment cmt"># example, the header 'x-amz-meta-username: fred,barney' would</span>
+180:       <span class="ruby-comment cmt"># become 'x-amz-meta-username:fred,barney'</span>
+181:       <span class="ruby-identifier">joined_headers</span> = <span class="ruby-identifier">unfolded_headers</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">header</span><span class="ruby-operator">|</span>
+182:         <span class="ruby-identifier">key</span> = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">strip</span>
+183:         <span class="ruby-identifier">value</span> = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">strip</span>
+184:         <span class="ruby-node">&quot;#{key}:#{value}&quot;</span>
+185:       <span class="ruby-keyword kw">end</span>
+186: 
+187:       <span class="ruby-comment cmt"># 6. Finally, append a new-line (U+000A) to each canonicalized</span>
+188:       <span class="ruby-comment cmt"># header in the resulting list. Construct the</span>
+189:       <span class="ruby-comment cmt"># CanonicalizedResource element by concatenating all headers in</span>
+190:       <span class="ruby-comment cmt"># this list into a single string.</span>
+191:       <span class="ruby-identifier">joined_headers</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">joined_headers</span>.<span class="ruby-identifier">empty?</span>
+192:       <span class="ruby-identifier">joined_headers</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;\n&quot;</span>)
+193:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="canonicalized-resource-method" class="method-detail ">
+				<a name="method-c-canonicalized_resource"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">canonicalized_resource</span><span
+						class="method-args">(host, resource)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Helper methods for extracting caninocalized resource address
+</p>
+<h4>Parameters</h4>
+<ul>
+<li><p>
+<tt>host</tt> - Hostname
+</p>
+</li>
+<li><p>
+<tt>request</tt> - Net::HTTPRequest object with header fields filled in
+</p>
+</li>
+</ul>
+<h4>Returns</h4>
+<p>
+String containing extracted canonicalized resource
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="canonicalized-resource-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/s3/signature.rb, line 204</span>
+204:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">canonicalized_resource</span>(<span class="ruby-identifier">host</span>, <span class="ruby-identifier">resource</span>)
+205:       <span class="ruby-comment cmt"># 1. Start with the empty string (&quot;&quot;).</span>
+206:       <span class="ruby-identifier">string</span> = <span class="ruby-value str">&quot;&quot;</span>
+207: 
+208:       <span class="ruby-comment cmt"># 2. If the request specifies a bucket using the HTTP Host</span>
+209:       <span class="ruby-comment cmt"># header (virtual hosted-style), append the bucket name preceded</span>
+210:       <span class="ruby-comment cmt"># by a &quot;/&quot; (e.g., &quot;/bucketname&quot;). For path-style requests and</span>
+211:       <span class="ruby-comment cmt"># requests that don't address a bucket, do nothing. For more</span>
+212:       <span class="ruby-comment cmt"># information on virtual hosted-style requests, see Virtual</span>
+213:       <span class="ruby-comment cmt"># Hosting of Buckets.</span>
+214:       <span class="ruby-identifier">bucket_name</span> = <span class="ruby-identifier">host</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp re">/\.?s3\.amazonaws\.com\Z/</span>, <span class="ruby-value str">&quot;&quot;</span>)
+215:       <span class="ruby-identifier">string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;/#{bucket_name}&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">bucket_name</span>.<span class="ruby-identifier">empty?</span>
+216: 
+217:       <span class="ruby-comment cmt"># 3. Append the path part of the un-decoded HTTP Request-URI,</span>
+218:       <span class="ruby-comment cmt"># up-to but not including the query string.</span>
+219:       <span class="ruby-identifier">uri</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">resource</span>)
+220:       <span class="ruby-identifier">string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">path</span>
+221: 
+222:       <span class="ruby-comment cmt"># 4. If the request addresses a sub-resource, like ?location,</span>
+223:       <span class="ruby-comment cmt"># ?acl, or ?torrent, append the sub-resource including question</span>
+224:       <span class="ruby-comment cmt"># mark.</span>
+225:       <span class="ruby-identifier">string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;?#{$1}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">query</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/&amp;?(acl|torrent|logging|location)(?:&amp;|=|\Z)/</span>
+226:       <span class="ruby-identifier">string</span>
+227:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="canonicalized-signature-method" class="method-detail ">
+				<a name="method-c-canonicalized_signature"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">canonicalized_signature</span><span
+						class="method-args">(options)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="canonicalized-signature-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/s3/signature.rb, line 96</span>
+ 96:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">canonicalized_signature</span>(<span class="ruby-identifier">options</span>)
+ 97:       <span class="ruby-identifier">headers</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:headers</span>] <span class="ruby-operator">||</span> {}
+ 98:       <span class="ruby-identifier">host</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:host</span>] <span class="ruby-operator">||</span> <span class="ruby-value str">&quot;&quot;</span>
+ 99:       <span class="ruby-identifier">resource</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:resource</span>]
+100:       <span class="ruby-identifier">access_key_id</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:access_key_id</span>]
+101:       <span class="ruby-identifier">secret_access_key</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:secret_access_key</span>]
+102: 
+103:       <span class="ruby-identifier">http_verb</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:method</span>].<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">upcase</span>
+104:       <span class="ruby-identifier">content_md5</span> = <span class="ruby-identifier">headers</span>[<span class="ruby-value str">&quot;content-md5&quot;</span>] <span class="ruby-operator">||</span> <span class="ruby-value str">&quot;&quot;</span>
+105:       <span class="ruby-identifier">content_type</span> = <span class="ruby-identifier">headers</span>[<span class="ruby-value str">&quot;content-type&quot;</span>] <span class="ruby-operator">||</span> <span class="ruby-value str">&quot;&quot;</span>
+106:       <span class="ruby-identifier">date</span> = <span class="ruby-identifier">headers</span>[<span class="ruby-value str">&quot;x-amz-date&quot;</span>].<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">headers</span>[<span class="ruby-value str">&quot;date&quot;</span>] <span class="ruby-operator">:</span> <span class="ruby-value str">&quot;&quot;</span>
+107:       <span class="ruby-identifier">canonicalized_resource</span> = <span class="ruby-identifier">canonicalized_resource</span>(<span class="ruby-identifier">host</span>, <span class="ruby-identifier">resource</span>)
+108:       <span class="ruby-identifier">canonicalized_amz_headers</span> = <span class="ruby-identifier">canonicalized_amz_headers</span>(<span class="ruby-identifier">headers</span>)
+109: 
+110:       <span class="ruby-identifier">string_to_sign</span> = <span class="ruby-value str">&quot;&quot;</span>
+111:       <span class="ruby-identifier">string_to_sign</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">http_verb</span>
+112:       <span class="ruby-identifier">string_to_sign</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;\n&quot;</span>
+113:       <span class="ruby-identifier">string_to_sign</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">content_md5</span>
+114:       <span class="ruby-identifier">string_to_sign</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;\n&quot;</span>
+115:       <span class="ruby-identifier">string_to_sign</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">content_type</span>
+116:       <span class="ruby-identifier">string_to_sign</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;\n&quot;</span>
+117:       <span class="ruby-identifier">string_to_sign</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">date</span>
+118:       <span class="ruby-identifier">string_to_sign</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;\n&quot;</span>
+119:       <span class="ruby-identifier">string_to_sign</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">canonicalized_amz_headers</span>
+120:       <span class="ruby-identifier">string_to_sign</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">canonicalized_resource</span>
+121: 
+122:       <span class="ruby-identifier">digest</span> = <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">Digest</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">'sha1'</span>)
+123:       <span class="ruby-identifier">hmac</span> = <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">HMAC</span>.<span class="ruby-identifier">digest</span>(<span class="ruby-identifier">digest</span>, <span class="ruby-identifier">secret_access_key</span>, <span class="ruby-identifier">string_to_sign</span>)
+124:       <span class="ruby-identifier">base64</span> = <span class="ruby-constant">Base64</span>.<span class="ruby-identifier">encode64</span>(<span class="ruby-identifier">hmac</span>)
+125:       <span class="ruby-identifier">base64</span>.<span class="ruby-identifier">chomp</span>
+126:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+

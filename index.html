@@ -1,21 +1,250 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 
-    s3 
-
-  -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-  <title>s3 </title>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>s3 0.3.5</title>
+
+	<link type="text/css" media="screen" href="rdoc.css" rel="stylesheet" />
+
+	<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/darkfish.js" type="text/javascript" charset="utf-8"></script>
+
 </head>
-<frameset rows="20%, 80%">
-    <frameset cols="25%,35%,45%">
-        <frame src="fr_file_index.html"   title="Files" name="Files" />
-        <frame src="fr_class_index.html"  name="Classes" />
-        <frame src="fr_method_index.html" name="Methods" />
-    </frameset>
-    <frame src="files/README_rdoc.html" name="docwin" />
-</frameset>
+<body class="indexpage">
+
+	
+	<h1>s3 0.3.5</h1>
+
+	
+	<p>This is the API documentation for 's3 0.3.5'.</p>
+	
+
+	
+	
+	<h2>Files</h2>
+	<ul>
+		
+			<li class="file"><a href="README_rdoc.html">README.rdoc</a></li>
+		
+	</ul>
+	
+
+	<h2 id="classes">Classes/Modules</h2>
+	<ul>
+		
+		<li class="module"><a href="S3.html">S3</a></li>
+		
+		<li class="class"><a href="S3/Bucket.html">S3::Bucket</a></li>
+		
+		<li class="module"><a href="S3/BucketsExtension.html">S3::BucketsExtension</a></li>
+		
+		<li class="class"><a href="S3/Connection.html">S3::Connection</a></li>
+		
+		<li class="class"><a href="S3/Error/ResponseError.html">S3::Error::ResponseError</a></li>
+		
+		<li class="class"><a href="S3/Object.html">S3::Object</a></li>
+		
+		<li class="module"><a href="S3/ObjectsExtension.html">S3::ObjectsExtension</a></li>
+		
+		<li class="module"><a href="S3/Parser.html">S3::Parser</a></li>
+		
+		<li class="class"><a href="S3/Request.html">S3::Request</a></li>
+		
+		<li class="class"><a href="S3/Service.html">S3::Service</a></li>
+		
+		<li class="class"><a href="S3/Signature.html">S3::Signature</a></li>
+		
+	</ul>
+
+	<h2 id="methods">Methods</h2>
+	<ul>
+		
+			<li><a href="S3/Signature.html#method-c-canonicalized_amz_headers">::canonicalized_amz_headers &mdash; S3::Signature</a></li>
+		
+			<li><a href="S3/Signature.html#method-c-canonicalized_resource">::canonicalized_resource &mdash; S3::Signature</a></li>
+		
+			<li><a href="S3/Signature.html#method-c-canonicalized_signature">::canonicalized_signature &mdash; S3::Signature</a></li>
+		
+			<li><a href="S3/Error/ResponseError.html#method-c-exception">::exception &mdash; S3::Error::ResponseError</a></li>
+		
+			<li><a href="S3/Signature.html#method-c-generate">::generate &mdash; S3::Signature</a></li>
+		
+			<li><a href="S3/Signature.html#method-c-generate_temporary_url">::generate_temporary_url &mdash; S3::Signature</a></li>
+		
+			<li><a href="S3/Signature.html#method-c-generate_temporary_url_signature">::generate_temporary_url_signature &mdash; S3::Signature</a></li>
+		
+			<li><a href="S3/Connection.html#method-c-new">::new &mdash; S3::Connection</a></li>
+		
+			<li><a href="S3/Service.html#method-c-new">::new &mdash; S3::Service</a></li>
+		
+			<li><a href="S3/Request.html#method-c-new">::new &mdash; S3::Request</a></li>
+		
+			<li><a href="S3/Object.html#method-c-new">::new &mdash; S3::Object</a></li>
+		
+			<li><a href="S3/Error/ResponseError.html#method-c-new">::new &mdash; S3::Error::ResponseError</a></li>
+		
+			<li><a href="S3/Connection.html#method-c-parse_headers">::parse_headers &mdash; S3::Connection</a></li>
+		
+			<li><a href="S3/Connection.html#method-c-parse_params">::parse_params &mdash; S3::Connection</a></li>
+		
+			<li><a href="S3/Bucket.html#method-i-%3D%3D">#== &mdash; S3::Bucket</a></li>
+		
+			<li><a href="S3/Object.html#method-i-%3D%3D">#== &mdash; S3::Object</a></li>
+		
+			<li><a href="S3/Service.html#method-i-%3D%3D">#== &mdash; S3::Service</a></li>
+		
+			<li><a href="S3/Object.html#method-i-acl%3D">#acl= &mdash; S3::Object</a></li>
+		
+			<li><a href="S3/Bucket.html#method-i-bucket_headers">#bucket_headers &mdash; S3::Bucket</a></li>
+		
+			<li><a href="S3/Bucket.html#method-i-bucket_request">#bucket_request &mdash; S3::Bucket</a></li>
+		
+			<li><a href="S3/Service.html#method-i-buckets">#buckets &mdash; S3::Service</a></li>
+		
+			<li><a href="S3/BucketsExtension.html#method-i-build">#build &mdash; S3::BucketsExtension</a></li>
+		
+			<li><a href="S3/ObjectsExtension.html#method-i-build">#build &mdash; S3::ObjectsExtension</a></li>
+		
+			<li><a href="S3/Object.html#method-i-cname_url">#cname_url &mdash; S3::Object</a></li>
+		
+			<li><a href="S3/Service.html#method-i-connection">#connection &mdash; S3::Service</a></li>
+		
+			<li><a href="S3/Object.html#method-i-content">#content &mdash; S3::Object</a></li>
+		
+			<li><a href="S3/Object.html#method-i-copy">#copy &mdash; S3::Object</a></li>
+		
+			<li><a href="S3/Object.html#method-i-copy_object">#copy_object &mdash; S3::Object</a></li>
+		
+			<li><a href="S3/Bucket.html#method-i-create_bucket_configuration">#create_bucket_configuration &mdash; S3::Bucket</a></li>
+		
+			<li><a href="S3/Bucket.html#method-i-delete_bucket">#delete_bucket &mdash; S3::Bucket</a></li>
+		
+			<li><a href="S3/Object.html#method-i-delete_object">#delete_object &mdash; S3::Object</a></li>
+		
+			<li><a href="S3/Object.html#method-i-destroy">#destroy &mdash; S3::Object</a></li>
+		
+			<li><a href="S3/Bucket.html#method-i-destroy">#destroy &mdash; S3::Bucket</a></li>
+		
+			<li><a href="S3/BucketsExtension.html#method-i-destroy_all">#destroy_all &mdash; S3::BucketsExtension</a></li>
+		
+			<li><a href="S3/ObjectsExtension.html#method-i-destroy_all">#destroy_all &mdash; S3::ObjectsExtension</a></li>
+		
+			<li><a href="S3/Object.html#method-i-dump_headers">#dump_headers &mdash; S3::Object</a></li>
+		
+			<li><a href="S3/Object.html#method-i-etag%3D">#etag= &mdash; S3::Object</a></li>
+		
+			<li><a href="S3/Object.html#method-i-exists%3F">#exists? &mdash; S3::Object</a></li>
+		
+			<li><a href="S3/Bucket.html#method-i-exists%3F">#exists? &mdash; S3::Bucket</a></li>
+		
+			<li><a href="S3/ObjectsExtension.html#method-i-find">#find &mdash; S3::ObjectsExtension</a></li>
+		
+			<li><a href="S3/BucketsExtension.html#method-i-find">#find &mdash; S3::BucketsExtension</a></li>
+		
+			<li><a href="S3/BucketsExtension.html#method-i-find_all">#find_all &mdash; S3::BucketsExtension</a></li>
+		
+			<li><a href="S3/ObjectsExtension.html#method-i-find_all">#find_all &mdash; S3::ObjectsExtension</a></li>
+		
+			<li><a href="S3/ObjectsExtension.html#method-i-find_first">#find_first &mdash; S3::ObjectsExtension</a></li>
+		
+			<li><a href="S3/BucketsExtension.html#method-i-find_first">#find_first &mdash; S3::BucketsExtension</a></li>
+		
+			<li><a href="S3/Object.html#method-i-full_key">#full_key &mdash; S3::Object</a></li>
+		
+			<li><a href="S3/Object.html#method-i-get_object">#get_object &mdash; S3::Object</a></li>
+		
+			<li><a href="S3/Connection.html#method-i-handle_response">#handle_response &mdash; S3::Connection</a></li>
+		
+			<li><a href="S3/Bucket.html#method-i-host">#host &mdash; S3::Bucket</a></li>
+		
+			<li><a href="S3/Connection.html#method-i-http">#http &mdash; S3::Connection</a></li>
+		
+			<li><a href="S3/Object.html#method-i-key%3D">#key= &mdash; S3::Object</a></li>
+		
+			<li><a href="S3/Object.html#method-i-key_valid%3F">#key_valid? &mdash; S3::Object</a></li>
+		
+			<li><a href="S3/Object.html#method-i-last_modified%3D">#last_modified= &mdash; S3::Object</a></li>
+		
+			<li><a href="S3/Service.html#method-i-list_all_my_buckets">#list_all_my_buckets &mdash; S3::Service</a></li>
+		
+			<li><a href="S3/Bucket.html#method-i-list_bucket">#list_bucket &mdash; S3::Bucket</a></li>
+		
+			<li><a href="S3/Bucket.html#method-i-location">#location &mdash; S3::Bucket</a></li>
+		
+			<li><a href="S3/Bucket.html#method-i-location_constraint">#location_constraint &mdash; S3::Bucket</a></li>
+		
+			<li><a href="S3/Bucket.html#method-i-name%3D">#name= &mdash; S3::Bucket</a></li>
+		
+			<li><a href="S3/Bucket.html#method-i-name_valid%3F">#name_valid? &mdash; S3::Bucket</a></li>
+		
+			<li><a href="S3/Object.html#method-i-object_headers">#object_headers &mdash; S3::Object</a></li>
+		
+			<li><a href="S3/Object.html#method-i-object_request">#object_request &mdash; S3::Object</a></li>
+		
+			<li><a href="S3/Bucket.html#method-i-objects">#objects &mdash; S3::Bucket</a></li>
+		
+			<li><a href="S3/Parser.html#method-i-parse_copy_object_result">#parse_copy_object_result &mdash; S3::Parser</a></li>
+		
+			<li><a href="S3/Parser.html#method-i-parse_error">#parse_error &mdash; S3::Parser</a></li>
+		
+			<li><a href="S3/Object.html#method-i-parse_headers">#parse_headers &mdash; S3::Object</a></li>
+		
+			<li><a href="S3/Parser.html#method-i-parse_list_all_my_buckets_result">#parse_list_all_my_buckets_result &mdash; S3::Parser</a></li>
+		
+			<li><a href="S3/Parser.html#method-i-parse_list_bucket_result">#parse_list_bucket_result &mdash; S3::Parser</a></li>
+		
+			<li><a href="S3/Parser.html#method-i-parse_location_constraint">#parse_location_constraint &mdash; S3::Parser</a></li>
+		
+			<li><a href="S3/Bucket.html#method-i-path_prefix">#path_prefix &mdash; S3::Bucket</a></li>
+		
+			<li><a href="S3/Service.html#method-i-port">#port &mdash; S3::Service</a></li>
+		
+			<li><a href="S3/Connection.html#method-i-port">#port &mdash; S3::Connection</a></li>
+		
+			<li><a href="S3/Service.html#method-i-protocol">#protocol &mdash; S3::Service</a></li>
+		
+			<li><a href="S3/Connection.html#method-i-proxy_settings">#proxy_settings &mdash; S3::Connection</a></li>
+		
+			<li><a href="S3/Object.html#method-i-put_object">#put_object &mdash; S3::Object</a></li>
+		
+			<li><a href="S3/Connection.html#method-i-request">#request &mdash; S3::Connection</a></li>
+		
+			<li><a href="S3/Object.html#method-i-retrieve">#retrieve &mdash; S3::Object</a></li>
+		
+			<li><a href="S3/Bucket.html#method-i-retrieve">#retrieve &mdash; S3::Bucket</a></li>
+		
+			<li><a href="S3/Parser.html#method-i-rexml_document">#rexml_document &mdash; S3::Parser</a></li>
+		
+			<li><a href="S3/Object.html#method-i-save">#save &mdash; S3::Object</a></li>
+		
+			<li><a href="S3/Bucket.html#method-i-save">#save &mdash; S3::Bucket</a></li>
+		
+			<li><a href="S3/Connection.html#method-i-send_request">#send_request &mdash; S3::Connection</a></li>
+		
+			<li><a href="S3/Request.html#method-i-send_request_with_body_stream">#send_request_with_body_stream &mdash; S3::Request</a></li>
+		
+			<li><a href="S3/Service.html#method-i-service_request">#service_request &mdash; S3::Service</a></li>
+		
+			<li><a href="S3/Object.html#method-i-storage_class%3D">#storage_class= &mdash; S3::Object</a></li>
+		
+			<li><a href="S3/Object.html#method-i-temporary_url">#temporary_url &mdash; S3::Object</a></li>
+		
+			<li><a href="S3/Object.html#method-i-url">#url &mdash; S3::Object</a></li>
+		
+			<li><a href="S3/Bucket.html#method-i-vhost%3F">#vhost? &mdash; S3::Bucket</a></li>
+		
+	</ul>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+</body>
 </html>

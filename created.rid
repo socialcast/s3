@@ -1,1 +1,14 @@
-Sun, 07 Feb 2010 14:23:17 +0100
+Sun, 26 Sep 2010 10:04:01 +0200
+README.rdoc	Sat, 25 Sep 2010 08:42:01 +0200
+lib/s3.rb	Sun, 26 Sep 2010 09:36:54 +0200
+lib/s3/buckets_extension.rb	Sat, 25 Sep 2010 08:42:01 +0200
+lib/s3/service.rb	Sun, 26 Sep 2010 09:55:11 +0200
+lib/s3/object.rb	Sun, 26 Sep 2010 09:32:47 +0200
+lib/s3/exceptions.rb	Sat, 25 Sep 2010 08:42:01 +0200
+lib/s3/signature.rb	Sat, 25 Sep 2010 19:55:14 +0200
+lib/s3/bucket.rb	Sat, 25 Sep 2010 19:46:35 +0200
+lib/s3/version.rb	Sun, 26 Sep 2010 10:01:04 +0200
+lib/s3/parser.rb	Sat, 25 Sep 2010 08:42:01 +0200
+lib/s3/objects_extension.rb	Sat, 25 Sep 2010 08:42:01 +0200
+lib/s3/request.rb	Sun, 26 Sep 2010 10:00:32 +0200
+lib/s3/connection.rb	Sun, 26 Sep 2010 09:53:56 +0200
