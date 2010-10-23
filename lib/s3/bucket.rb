@@ -74,7 +74,7 @@ module S3
     # name. If the bucket contains characters like underscore it can't
     # be used as +VHOST+ (e.g. <tt>bucket_name.s3.amazonaws.com</tt>)
     def vhost?
-      "#@name.#{HOST}" =~ /\A#{URI::REGEXP::PATTERN::HOSTNAME}\Z/
+      self.class.vhost?(@name)
     end
 
     # Returns host name of the bucket according (see #vhost? method)
@@ -96,6 +96,10 @@ module S3
 
     def inspect #:nodoc:
       "#<#{self.class}:#{name}>"
+    end
+    
+    def self.vhost?(name)
+      "#{name}.#{HOST}" =~ /\A#{URI::REGEXP::PATTERN::HOSTNAME}\Z/
     end
 
     private

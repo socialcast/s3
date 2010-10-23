@@ -81,9 +81,11 @@ module S3
       resource = options[:resource]
       access_key = options[:access_key]
       expires = options[:expires_at].to_i
+      resource = File.join(bucket, resource) unless S3::Bucket.vhost?(bucket)
       signature = generate_temporary_url_signature(options)
-
-      url = "http://#{S3::HOST}/#{bucket}/#{resource}"
+      protocol = options[:use_ssl] ? 'https' : 'http'
+      
+      url = "#{protocol}://#{(bucket + ".") if S3::Bucket.vhost?(bucket)}#{S3::HOST}/#{resource}"
       url << "?AWSAccessKeyId=#{access_key}"
       url << "&Expires=#{expires}"
       url << "&Signature=#{signature}"

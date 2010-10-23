@@ -199,7 +199,20 @@ class SignatureTest < Test::Unit::TestCase
       :method => :put,
       :headers => {'x-amz-acl' => 'public-read'}
     )
-    expected = "http://s3.amazonaws.com/johnsmith/photos/puppy.jpg?AWSAccessKeyId=0PN5J17HBGZHT7JJ3X82&Expires=1175046589&Signature=SDMxjIkOKIVR47nWfJ57UNPXxFM%3D"
+    expected = "http://johnsmith.s3.amazonaws.com/photos/puppy.jpg?AWSAccessKeyId=0PN5J17HBGZHT7JJ3X82&Expires=1175046589&Signature=SDMxjIkOKIVR47nWfJ57UNPXxFM%3D"
     assert_equal expected, actual
+  end
+  test "temporary url for object get over https" do
+    actual = S3::Signature.generate_temporary_url(
+      :bucket => "johnsmith",
+      :resource => "photos/puppy.jpg",
+      :access_key => '0PN5J17HBGZHT7JJ3X82',
+      :secret_access_key => "uV3F3YluFJax1cknvbcGwgjvx4QpvB+leU8dUj2o",
+      :expires_at => 1175046589,
+      :method => :get,
+      :use_ssl => true
+    )
+    expected = /https:\/\/johnsmith\.s3\.amazonaws\.com\/photos\/puppy\.jpg\?AWSAccessKeyId=0PN5J17HBGZHT7JJ3X82\&Expires=1175046589\&Signature=/
+    assert_match expected, actual
   end
 end
