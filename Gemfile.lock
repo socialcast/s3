@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    s3 (0.3.7)
+    scashin133-s3 (0.3.8)
       proxies
 
 GEM
@@ -20,5 +20,5 @@ DEPENDENCIES
   bundler (>= 1.0.0)
   mocha
   proxies
-  s3!
+  scashin133-s3!
   test-unit (>= 2.0)
