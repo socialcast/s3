@@ -1,8 +1,8 @@
 PATH
   remote: .
   specs:
-    scashin133-s3 (0.3.8)
-      proxies
+    scashin133-s3 (0.3.11)
+      proxies (~> 0.2.0)
 
 GEM
   remote: http://rubygems.org/
