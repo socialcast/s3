@@ -22,6 +22,7 @@ class ObjectTest < Test::Unit::TestCase
     @response_binary["content-encoding"] = nil
     @response_binary["last-modified"] = Time.now.httpdate
     @response_binary["content-length"] = 20
+    @response_binary["x-amz-meta-test"] = "metadata"
 
     @xml_body = <<-EOXML
     <?xml version="1.0" encoding="UTF-8"?>
@@ -132,6 +133,14 @@ class ObjectTest < Test::Unit::TestCase
     assert @object_lena.retrieve
   end
 
+  test "retrieve headers" do
+    @object_lena.expects(:object_request).twice.with(:head, {}).returns(@response_binary)
+    assert @object_lena.retrieve
+
+    meta = {"x-amz-meta-test" => ["metadata"]}
+    assert_equal meta, @object_lena.retrieve.metadata
+  end
+
   test "exists" do
     @object_lena.expects(:retrieve).returns(true)
     assert @object_lena.exists?
@@ -157,18 +166,18 @@ class ObjectTest < Test::Unit::TestCase
     actual = @object_lena.acl
     assert_equal expected, actual
   end
-  
+
   test "storage-class writer" do
     expected = nil
     actual = @object_lena.storage_class
     assert_equal expected, actual
-    
+
     assert @object_lena.storage_class = :standard
-    
+
     expected = "STANDARD"
     actual = @object_lena.storage_class
     assert_equal expected, actual
-    
+
     assert @object_lena.storage_class = :reduced_redundancy
 
     expected = "REDUCED_REDUNDANCY"
@@ -176,10 +185,19 @@ class ObjectTest < Test::Unit::TestCase
     assert_equal expected, actual
   end
 
-  test "copy" do
+  test "replace" do
     @bucket_images.expects(:bucket_request).with(:put, :path => "Lena-copy.png", :headers => { :x_amz_acl => "public-read", :content_type => "application/octet-stream", :x_amz_copy_source => "images/Lena.png", :x_amz_metadata_directive => "REPLACE" }).returns(@response_xml)
 
     new_object = @object_lena.copy(:key => "Lena-copy.png")
+
+    assert_equal "Lena-copy.png", new_object.key
+    assert_equal "Lena.png", @object_lena.key
+  end
+
+  test "copy" do
+    @bucket_images.expects(:bucket_request).with(:put, :path => "Lena-copy.png", :headers => { :x_amz_acl => "public-read", :content_type => "application/octet-stream", :x_amz_copy_source => "images/Lena.png", :x_amz_metadata_directive => "COPY" }).returns(@response_xml)
+
+    new_object = @object_lena.copy(:key => "Lena-copy.png", :replace => false)
 
     assert_equal "Lena-copy.png", new_object.key
     assert_equal "Lena.png", @object_lena.key

@@ -6,7 +6,7 @@ module S3
     extend Forwardable
 
     attr_accessor :content_type, :content_disposition, :content_encoding, :cache_control
-    attr_reader :last_modified, :etag, :size, :bucket, :key, :acl, :storage_class
+    attr_reader :last_modified, :etag, :size, :bucket, :key, :acl, :storage_class, :metadata
     attr_writer :content
 
     def_instance_delegators :bucket, :name, :service, :bucket_request, :vhost?, :host, :path_prefix
@@ -70,10 +70,11 @@ module S3
       false
     end
 
-    # Download the content of the object, and caches it. Pass true
-    # to clear the cache and download the object again.
+    # Downloads the content of the object, and caches it. Pass true to
+    # clear the cache and download the object again.
     def content(reload = false)
-      get_object if reload or @content.nil?
+      return @content if defined?(@content) and not reload
+      get_object
       @content
     end
 
@@ -150,7 +151,7 @@ module S3
       headers[:content_disposition] = options[:content_disposition] if options[:content_disposition]
       headers[:cache_control] = options[:cache_control] if options[:cache_control]
       headers[:x_amz_copy_source] = full_key
-      headers[:x_amz_metadata_directive] = "REPLACE"
+      headers[:x_amz_metadata_directive] = options[:replace] == false ? "COPY" : "REPLACE"
       headers[:x_amz_copy_source_if_match] = options[:if_match] if options[:if_match]
       headers[:x_amz_copy_source_if_none_match] = options[:if_none_match] if options[:if_none_match]
       headers[:x_amz_copy_source_if_unmodified_since] = options[:if_modified_since] if options[:if_modified_since]
@@ -234,6 +235,7 @@ module S3
     end
 
     def parse_headers(response)
+      @metadata = response.to_hash.select { |k, v| k.to_s.start_with?("x-amz-meta") }
       self.etag = response["etag"] if response.key?("etag")
       self.content_type = response["content-type"] if response.key?("content-type")
       self.content_disposition = response["content-disposition"] if response.key?("content-disposition")

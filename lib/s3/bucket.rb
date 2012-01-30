@@ -19,11 +19,8 @@ module S3
 
     # Returns location of the bucket, e.g. "EU"
     def location(reload = false)
-      if reload or @location.nil?
-        @location = location_constraint
-      else
-        @location
-      end
+      return @location if defined?(@location) and not reload
+      @location = location_constraint
     end
 
     # Compares the bucket with other bucket. Returns true if the names
@@ -88,10 +85,16 @@ module S3
       vhost? ? "" : "#@name/"
     end
 
-    # Returns the objects in the bucket and caches the result (see
-    # #reload method).
+    # Returns the objects in the bucket and caches the result
     def objects
       Proxy.new(lambda { list_bucket }, :owner => self, :extend => ObjectsExtension)
+    end
+
+    # Returns the object with the given key. Does not check whether the
+    # object exists. But also does not issue any HTTP requests, so it's
+    # much faster than objects.find
+    def object(key)
+      Object.send(:new, self, :key => key)
     end
 
     def inspect #:nodoc:
@@ -113,13 +116,20 @@ module S3
 
     def list_bucket(options = {})
       response = bucket_request(:get, :params => options)
+      max_keys = options[:max_keys]
       objects_attributes = parse_list_bucket_result(response.body)
 
-      # If there are more than 1000 objects S3 truncates listing
-      # and we need to request another listing for the remaining objects.
+      # If there are more than 1000 objects S3 truncates listing and
+      # we need to request another listing for the remaining objects.
       while parse_is_truncated(response.body)
-        marker = objects_attributes.last[:key]
-        response = bucket_request(:get, :params => options.merge(:marker => marker))
+        next_request_options = {:marker => objects_attributes.last[:key]}
+
+        if max_keys
+          break if objects_attributes.length >= max_keys
+          next_request_options[:max_keys] = max_keys - objects_attributes.length
+        end
+
+        response = bucket_request(:get, :params => options.merge(next_request_options))
         objects_attributes += parse_list_bucket_result(response.body)
       end
 

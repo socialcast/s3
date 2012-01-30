@@ -52,9 +52,9 @@ module S3
       expires = options[:expires_at]
 
       headers = options[:headers] || {}
-      headers.merge!('date' => expires.to_i.to_s)
+      headers.merge!("date" => expires.to_i.to_s)
 
-      options.merge!(:resource => "/#{bucket}/#{resource}",
+      options.merge!(:resource => "/#{bucket}/#{URI.escape(resource)}",
                      :method => options[:method] || :get,
                      :headers => headers)
       signature = canonicalized_signature(options)
@@ -119,7 +119,7 @@ module S3
       string_to_sign << canonicalized_amz_headers
       string_to_sign << canonicalized_resource
 
-      digest = OpenSSL::Digest::Digest.new('sha1')
+      digest = OpenSSL::Digest::Digest.new("sha1")
       hmac = OpenSSL::HMAC.digest(digest, secret_access_key, string_to_sign)
       base64 = Base64.encode64(hmac)
       base64.chomp
@@ -139,7 +139,7 @@ module S3
       headers = []
 
       # 1. Convert each HTTP header name to lower-case. For example,
-      # 'X-Amz-Date' becomes 'x-amz-date'.
+      # "X-Amz-Date" becomes "x-amz-date".
       request.each { |key, value| headers << [key.downcase, value] if key =~ /\Ax-amz-/io }
       #=> [["c", 0], ["a", 1], ["a", 2], ["b", 3]]
 
@@ -152,9 +152,9 @@ module S3
       # "header-name:comma-separated-value-list" pair as prescribed by
       # RFC 2616, section 4.2, without any white-space between
       # values. For example, the two metadata headers
-      # 'x-amz-meta-username: fred' and 'x-amz-meta-username: barney'
-      # would be combined into the single header 'x-amz-meta-username:
-      # fred,barney'.
+      # "x-amz-meta-username: fred" and "x-amz-meta-username: barney"
+      # would be combined into the single header "x-amz-meta-username:
+      # fred,barney".
       combined_headers = headers.inject([]) do |new_headers, header|
         existing_header = new_headers.find { |h| h.first == header.first }
         if existing_header
@@ -176,8 +176,8 @@ module S3
       end
 
       # 5. Trim any white-space around the colon in the header. For
-      # example, the header 'x-amz-meta-username: fred,barney' would
-      # become 'x-amz-meta-username:fred,barney'
+      # example, the header "x-amz-meta-username: fred,barney" would
+      # become "x-amz-meta-username:fred,barney"
       joined_headers = unfolded_headers.map do |header|
         key = header.first.strip
         value = header.last.strip
@@ -222,7 +222,23 @@ module S3
       # 4. If the request addresses a sub-resource, like ?location,
       # ?acl, or ?torrent, append the sub-resource including question
       # mark.
-      string << "?#{$1}" if uri.query =~ /&?(acl|torrent|logging|location)(?:&|=|\Z)/
+      sub_resources = [
+        "acl",
+        "location",
+        "logging",
+        "notification",
+        "partNumber",
+        "policy",
+        "requestPayment",
+        "torrent",
+        "uploadId",
+        "uploads",
+        "versionId",
+        "versioning",
+        "versions",
+        "website"
+      ]
+      string << "?#{$1}" if uri.query =~ /&?(#{sub_resources.join("|")})(?:&|=|\Z)/
       string
     end
   end
